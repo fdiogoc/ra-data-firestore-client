@@ -196,7 +196,13 @@ const getOne = async (params, resourceName, resourceData) => {
 const getList = async (params, resourceName, resourceData) => {
   if (params.pagination) {
     let values = [];
-    let snapshots = await firebase
+    let snapshots = params.sort 
+      ? await firebase
+        .firestore()
+        .collection(resourceName)
+        .orderBy(params.sort.field, params.sort.order.toLowerCase())
+        .get()
+      : await firebase
       .firestore()
       .collection(resourceName)
       .get();

@@ -32,9 +32,7 @@ const RestProvider = (firebaseConfig = {}, options = {}) => {
   if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-    firebase.firestore().settings({
-      timestampsInSnapshots: true
-    });
+    firebase.firestore();
   }
 
   /* Functions */
