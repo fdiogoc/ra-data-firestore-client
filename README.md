@@ -20,7 +20,7 @@ npm run demo
 ## To install & test RestProvider & AuthProvider:
 
 ```bash
-npm install ra-data-firestore-client
+npm install ra-data-firestore-client-naggertooth
 ```
 Check [example implementation](https://github.com/rafalzawadzki/ra-data-firestore-client/blob/master/src/demo/App.js).
 
