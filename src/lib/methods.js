@@ -223,7 +223,7 @@ const getList = async (params, resourceName, resourceData) => {
           let comparisonValue = 0;
           let comparisonChecker = comparison ? (params.filter[key].includes('<') ? '<' : '>') : false;
           if (comparison) {
-            comparisonValue = !isNaN(Number(params.filter[key].slice(2))) ? Number(params.filter[key].slice(2)) : 0;
+            comparisonValue = !isNaN(Number(params.filter[key].slice(1))) ? Number(params.filter[key].slice(1)) : 0;
           }
 
           if (comparisonChecker === '>') {
