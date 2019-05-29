@@ -196,16 +196,16 @@ const getOne = async (params, resourceName, resourceData) => {
 const getList = async (params, resourceName, resourceData) => {
   if (params.pagination) {
     let values = [];
-    let snapshots = params.sort 
+    let snapshots = params.sort
       ? await firebase
-        .firestore()
-        .collection(resourceName)
-        .orderBy(params.sort.field, params.sort.order.toLowerCase())
-        .get()
+          .firestore()
+          .collection(resourceName)
+          .orderBy(params.sort.field, params.sort.order.toLowerCase())
+          .get()
       : await firebase
-      .firestore()
-      .collection(resourceName)
-      .get();
+          .firestore()
+          .collection(resourceName)
+          .get();
 
     for (const snapshot of snapshots.docs) {
       const data = snapshot.data();
@@ -219,7 +219,20 @@ const getList = async (params, resourceName, resourceData) => {
       values = values.filter(item => {
         let meetsFilters = true;
         for (const key of Object.keys(params.filter)) {
-          meetsFilters = item[key] === params.filter[key];
+          const comparison = params.filter[key].includes('<') || params.filter[key].includes('>');
+          let comparisonValue = 0;
+          let comparisonChecker = comparison ? (params.filter[key].includes('<') ? '<' : '>') : false;
+          if (comparison) {
+            comparisonValue = !isNaN(Number(params.filter[key].slice(2))) ? Number(params.filter[key].slice(2)) : 0;
+          }
+
+          if (comparisonChecker === '>') {
+            meetsFilters = item[key] > comparisonValue;
+          } else if (comparisonChecker === '<') {
+            meetsFilters = item[key] < comparisonValue;
+          } else {
+            meetsFilters = item[key] === params.filter[key];
+          }
         }
         return meetsFilters;
       });
