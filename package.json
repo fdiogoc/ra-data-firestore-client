@@ -1,6 +1,6 @@
 {
   "name": "ra-data-firestore-client-naggertooth",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Firestore Client for react-admin",
   "main": "build/index.js",
   "jsnext:main": "es/index.js",
@@ -29,11 +29,11 @@
     "reset": "rm -rf node_modules && rm -rf package-lock.json && npm install && npm run init",
     "start": "concurrently --kill-others \"npm run build:watch\" \"npm run app-start\""
   },
-  "author": "Rafal Zawadzki <iam@rafalzawadzki.com> (http://rafalzawadzki.com/)",
+  "author": "Ilya Starokozhov <grachara@gmail.com>",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rafalzawadzki/ra-data-firestore-client.git"
+    "url": "https://github.com/Naggertooth/ra-data-firestore-client.git"
   },
   "peerDependencies": {
     "react": "16.5.0",
